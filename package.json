@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/ffgi-es/learning-cats/issues"
   },
-  "homepage": "https://github.com/ffgi-es/learning-cats#readme"
+  "homepage": "https://github.com/ffgi-es/learning-cats#readme",
+  "dependencies": {
+    "yarn": "^1.22.0"
+  }
 }
