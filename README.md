@@ -47,3 +47,8 @@ As a user
 So I can see a nice cat
 I want to see a random cat picture when I load the page
 ```
+```
+As a user
+So I can learn about cat breeds
+I want the breed of cat to displayed with the photo
+```
