@@ -1,20 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import axios from 'axios';
+import setAxiosMocks from '../../helpers/setAxiosMock';
 
 import App from './App';
 
 jest.mock('axios');
-axios.get.mockReturnValue(Promise.resolve({
-  data: [
-    {
-      breeds: [],
-      categories: [],
-      id: 'test_id',
-      url: 'test_url',
-    },
-  ],
-}));
+setAxiosMocks(axios, 'test_id', 'test_url', 'test breed',
+  [{ id: 'one', name: 'Breed One' }, { id: 'two', name: 'Breed Two' }]);
 
 describe('App', () => {
   let wrapper;
@@ -28,6 +21,18 @@ describe('App', () => {
     expect(wrapper.find('.App-container').length).toBe(1);
   });
 
+  it('should request an image from theCatApi', () => {
+    expect(axios.get.mock.calls[0][0])
+      .toEqual('https://api.thecatapi.com/v1/images/search');
+  });
+
+  it('should send the correct api key', () => {
+    const headers = { 'x-api-key': process.env.REACT_APP_CAT_API_KEY };
+    axios.get.mock.calls.forEach((call) => {
+      expect(call[1].headers).toEqual(headers);
+    });
+  });
+
   it('should render an a cat image', () => {
     const catImage = wrapper.find('img');
 
@@ -36,13 +41,9 @@ describe('App', () => {
     expect(catImage.prop('alt')).toEqual('test_id');
   });
 
-  it('should request the correct url from theCatApi', () => {
-    expect(axios.get.mock.calls[0][0])
-      .toEqual('https://api.thecatapi.com/v1/images/search');
-  });
+  it('should show the breed of the cat', () => {
+    const breed = wrapper.find('h3.cat-breed');
 
-  it('should send the correct api key', () => {
-    const headers = { 'x-api-key': process.env.REACT_APP_CAT_API_KEY };
-    expect(axios.get.mock.calls[0][1]).toEqual({ headers });
+    expect(breed.text()).toEqual('test breed');
   });
 });

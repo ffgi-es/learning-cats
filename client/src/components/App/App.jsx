@@ -25,8 +25,14 @@ export default class App extends Component {
     const { isLoaded, cat } = this.state;
 
     let content;
-    if (isLoaded) content = <img alt={cat.id} src={cat.url} />;
-    else content = <p>Loading...</p>;
+    if (isLoaded) {
+      content = (
+        <div>
+          <img alt={cat.id} src={cat.url} />
+          <h3 className="cat-breed">{cat.breeds[0].name}</h3>
+        </div>
+      );
+    } else content = <p>Loading...</p>;
 
     return (
       <div className="App-container">
