@@ -4,7 +4,10 @@
   "description": "A small application to learn the difference between different cat breeds",
   "main": "index.js",
   "scripts": {
-    "test": "yarn --cwd client test"
+    "setup": "yarn && yarn --cwd client",
+    "test-client": "yarn --cwd client test",
+    "lint-client": "yarn --cwd client lint",
+    "start": "yarn --cwd client start"
   },
   "repository": {
     "type": "git",
