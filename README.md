@@ -6,6 +6,16 @@ A small application to learn the difference between different cat breeds
 
 - node.js
 - yarn
+- [theCatApi](https://thecatapi.com) API key
+
+Once you have an API key save it in `client/.env`:
+```
+---- ./client/.env ----
+REACT_APP_CAT_API_KEY=<your key here>
+
+---- EXAMPLE ----
+REACT_APP_CAT_API_KEY=abc12de-f34g-hi56j-akfhsdf7df73
+```
 
 ## Installation
 
@@ -29,3 +39,11 @@ $ yarn start
 ```
 
 Then navigate to `localhost:3000`
+
+## User Stories
+
+```
+As a user
+So I can see a nice cat
+I want to see a random cat picture when I load the page
+```
