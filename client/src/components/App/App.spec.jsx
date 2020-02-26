@@ -26,4 +26,11 @@ describe('App', () => {
     const picture = wrapper.find(Picture);
     expect(picture.length).toBe(1);
   });
+
+  it('should should give the picture a random breed from the catapi breeds', () => {
+    const picture = wrapper.find(Picture);
+    const breeds = ['one', 'two'];
+    const breed = picture.prop('breed');
+    expect(breeds).toContain(breed);
+  });
 });

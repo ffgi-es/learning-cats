@@ -12,7 +12,7 @@ describe('<Picture />', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<Picture />);
+    wrapper = shallow(<Picture breed="test_breed_id" />);
   });
 
   it('should render a div for the app', () => {
@@ -22,6 +22,11 @@ describe('<Picture />', () => {
   it('should request an image from theCatApi', () => {
     expect(axios.get.mock.calls[0][0])
       .toEqual('https://api.thecatapi.com/v1/images/search');
+  });
+
+  it('should request an image of a cat of the selected breed', () => {
+    expect(axios.get.mock.calls[0][1].params.breed_id)
+      .toEqual('test_breed_id');
   });
 
   it('should send the correct api key', () => {

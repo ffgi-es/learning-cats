@@ -6,21 +6,26 @@ export default function setAxiosMocks(
     { name: 'Longhaired', id: 'long' },
   ],
 ) {
+  const imagePromise = Promise.resolve({
+    data: [
+      {
+        breeds: [{ name: breed }],
+        id,
+        url: cat_url,
+      },
+    ],
+  });
+  const breedsPromise = Promise.resolve({ data: breeds });
+
   axios.get.mockImplementation((url) => {
     if (url.startsWith('https://api.thecatapi.com/v1/images/search')) {
-      return Promise.resolve({
-        data: [
-          {
-            breeds: [{ name: breed }],
-            id,
-            url: cat_url,
-          },
-        ],
-      });
+      return imagePromise;
     }
     if (url.startsWith('https://api.thecatapi.com/v1/breeds')) {
-      return Promise.resolve({ data: breeds });
+      return breedsPromise;
     }
     return Promise.resolve({});
   });
+
+  return { imagePromise, breedsPromise };
 }

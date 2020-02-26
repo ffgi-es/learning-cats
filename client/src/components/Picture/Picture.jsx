@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 export default class Picture extends Component {
   constructor(props) {
@@ -11,7 +12,11 @@ export default class Picture extends Component {
   }
 
   componentDidMount() {
-    const config = { headers: { 'x-api-key': process.env.REACT_APP_CAT_API_KEY } };
+    const { breed } = this.props;
+    const config = {
+      params: { breed_id: breed },
+      headers: { 'x-api-key': process.env.REACT_APP_CAT_API_KEY },
+    };
     axios.get('https://api.thecatapi.com/v1/images/search', config)
       .then((response) => {
         this.setState({
@@ -34,7 +39,11 @@ export default class Picture extends Component {
     }
 
     return (
-      <div className="App-container">Loading...</div>
+      <div className="picture-container">Loading...</div>
     );
   }
 }
+
+Picture.propTypes = {
+  breed: PropTypes.string.isRequired,
+};
