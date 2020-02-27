@@ -2,6 +2,8 @@
 
 A small application to learn the difference between different cat breeds
 
+![Guess some cats!](./learningcats.gif)
+
 ## Prerequisites
 
 - node.js
