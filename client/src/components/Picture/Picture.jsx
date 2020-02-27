@@ -11,10 +11,8 @@ export default class Picture extends Component {
       isLoaded: false,
       cat: {},
     };
-  }
 
-  componentDidMount() {
-    const { breed } = this.props;
+    const { breed } = props;
     const config = {
       params: { breed_id: breed },
       headers: { 'x-api-key': process.env.REACT_APP_CAT_API_KEY },

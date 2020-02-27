@@ -12,9 +12,7 @@ export default class App extends Component {
     this.state = {
       isLoaded: false,
     };
-  }
 
-  componentDidMount() {
     const config = { headers: { 'x-api-key': process.env.REACT_APP_CAT_AÎ_KEY } };
     axios.get('https://api.thecatapi.com/v1/breeds', config)
       .then((response) => {
