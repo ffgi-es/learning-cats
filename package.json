@@ -7,7 +7,8 @@
     "setup": "yarn && yarn --cwd client",
     "test-client": "yarn --cwd client test",
     "lint-client": "yarn --cwd client lint",
-    "start": "yarn --cwd client start"
+    "start": "yarn --cwd client start",
+    "heroku-postbuild": "yarn --cwd client && yarn --cwd client build"
   },
   "repository": {
     "type": "git",
