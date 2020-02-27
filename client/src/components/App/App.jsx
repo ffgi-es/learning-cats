@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import shuffleArray from './helpers';
+import shuffleArray from '../helpers';
 
 import Picture from '../Picture/Picture';
 import BreedOptions from '../BreedOptions/BreedOptions';

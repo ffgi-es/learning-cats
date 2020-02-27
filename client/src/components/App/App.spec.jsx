@@ -101,11 +101,11 @@ describe('App', () => {
     expect(wrapper.find('button.new-cat').text()).toEqual('New cat');
   });
 
-  it('should load a new cat when button is pressed', () => {
+  it('should load a new cat when button is pressed', async () => {
     wrapper.instance().answer(true);
     const oldBreed = wrapper.find(Picture).prop('breed');
 
-    wrapper.find('button.new-cat').simulate('click');
+    await wrapper.find('button.new-cat').simulate('click');
 
     const picture = wrapper.find(Picture);
 
