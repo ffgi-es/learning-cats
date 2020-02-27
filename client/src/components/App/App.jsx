@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import shuffleArray from './helpers';
 
 import Picture from '../Picture/Picture';
+import BreedOptions from '../BreedOptions/BreedOptions';
 import BreedInfo from '../BreedInfo/BreedInfo';
 
 export default class App extends Component {
@@ -24,15 +26,44 @@ export default class App extends Component {
       });
   }
 
+  answer(correct) {
+    this.setState({ answered: correct });
+  }
+
   render() {
-    const { isLoaded, breeds } = this.state;
+    const { isLoaded, breeds, answered } = this.state;
 
     if (isLoaded) {
-      const randomBreed = breeds[Math.floor(Math.random() * breeds.length)];
+      const shuffled = shuffleArray(breeds);
+
+      const randomBreed = shuffled.pop();
+      const incorrect1 = shuffled.pop();
+      const incorrect2 = shuffled.pop();
+
+      let options;
+      let result;
+      let info;
+      if (answered !== undefined) {
+        const resultText = answered ? 'Correct' : 'Incorrect';
+        result = <p className="result">{resultText}</p>;
+        info = <BreedInfo breed={randomBreed} />;
+      } else {
+        options = (
+          <BreedOptions
+            correct={randomBreed}
+            incorrect1={incorrect1}
+            incorrect2={incorrect2}
+            answer={(ans) => this.answer(ans)}
+          />
+        );
+      }
+
       return (
         <div className="App-container">
           <Picture breed={randomBreed.id} />
-          <BreedInfo breed={randomBreed} />
+          {options}
+          {result}
+          {info}
         </div>
       );
     }

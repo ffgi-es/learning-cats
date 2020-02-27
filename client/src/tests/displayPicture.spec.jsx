@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import axios from 'axios';
 import setAxiosMocks from '../helpers/setAxiosMock';
 
@@ -20,6 +20,9 @@ describe('view picture from theCatApi', () => {
 
   it('shows the breed of the cat under the picture', async () => {
     const { getByText } = await render(<App />);
+
+    fireEvent.click(getByText('Shorthair'));
+
     imagePromise.then(() => {
       expect(getByText(/(Shorthair|Other|Longhaired)/)).toBeInTheDocument();
     });

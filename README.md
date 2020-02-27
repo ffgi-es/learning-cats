@@ -52,3 +52,8 @@ As a user
 So I can learn about cat breeds
 I want the breed of cat to displayed with the photo
 ```
+```
+As a user
+So I can test my knowledge
+I want to try and guess the breed first from some options
+```
