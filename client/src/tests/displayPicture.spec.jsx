@@ -21,7 +21,7 @@ describe('view picture from theCatApi', () => {
   it('shows the breed of the cat under the picture', async () => {
     const { getByText } = await render(<App />);
     imagePromise.then(() => {
-      expect(getByText('Shorthair')).toBeInTheDocument();
+      expect(getByText(/(Shorthair|Other|Longhaired)/)).toBeInTheDocument();
     });
   });
 });

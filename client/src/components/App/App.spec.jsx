@@ -5,10 +5,11 @@ import setAxiosMocks from '../../helpers/setAxiosMock';
 
 import App from './App';
 import Picture from '../Picture/Picture';
+import BreedInfo from '../BreedInfo/BreedInfo';
 
 jest.mock('axios');
-setAxiosMocks(axios, 'test_id', 'test_url', 'test breed',
-  [{ id: 'one', name: 'Breed One' }, { id: 'two', name: 'Breed Two' }]);
+const breeds = [{ id: 'one', name: 'Breed One' }, { id: 'two', name: 'Breed Two' }];
+setAxiosMocks(axios, 'test_id', 'test_url', 'test breed', breeds);
 
 describe('App', () => {
   let wrapper;
@@ -27,10 +28,16 @@ describe('App', () => {
     expect(picture.length).toBe(1);
   });
 
-  it('should should give the picture a random breed from the catapi breeds', () => {
+  it('should give the picture a random breed from thecatapi breeds', () => {
     const picture = wrapper.find(Picture);
-    const breeds = ['one', 'two'];
+    const breedIDs = breeds.map((breed) => breed.id);
     const breed = picture.prop('breed');
-    expect(breeds).toContain(breed);
+    expect(breedIDs).toContain(breed);
+  });
+
+  it('should render a the breed info', () => {
+    const breed = wrapper.find(BreedInfo);
+
+    expect(breeds).toContain(breed.prop('breed'));
   });
 });

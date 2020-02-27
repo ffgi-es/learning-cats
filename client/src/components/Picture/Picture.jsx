@@ -33,7 +33,6 @@ export default class Picture extends Component {
       return (
         <div className="picture-container">
           <img alt={cat.id} src={cat.url} />
-          <h3 className="cat-breed">{cat.breeds[0].name}</h3>
         </div>
       );
     }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Picture from '../Picture/Picture';
+import BreedInfo from '../BreedInfo/BreedInfo';
 
 export default class App extends Component {
   constructor(props) {
@@ -31,6 +32,7 @@ export default class App extends Component {
       return (
         <div className="App-container">
           <Picture breed={randomBreed.id} />
+          <BreedInfo breed={randomBreed} />
         </div>
       );
     }

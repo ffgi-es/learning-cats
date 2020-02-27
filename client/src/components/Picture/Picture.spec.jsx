@@ -43,10 +43,4 @@ describe('<Picture />', () => {
     expect(catImage.prop('src')).toEqual('test_url');
     expect(catImage.prop('alt')).toEqual('test_id');
   });
-
-  it('should show the breed of the cat', () => {
-    const breed = wrapper.find('h3.cat-breed');
-
-    expect(breed.text()).toEqual('test breed');
-  });
 });
