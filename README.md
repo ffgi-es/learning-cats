@@ -4,6 +4,13 @@ A small application to learn the difference between different cat breeds
 
 ![Guess some cats!](./learningcats.gif)
 
+Given an image of a cat you can guess what breed it is from a choice of
+three breeds. You will be told if you are correct or not and the
+actual breed of the cat.
+
+A new cat can be loaded at any time to have another go or if you just
+don't particularly like that cat.
+
 ## Prerequisites
 
 - node.js
@@ -33,6 +40,8 @@ $ yarn test-client
 $ yarn lint-client
 ...
 ```
+
+Two tests are currently a little flakey...
 
 ## Run server
 
