@@ -32,7 +32,10 @@ export default class Picture extends Component {
 
   componentDidUpdate(prevProps) {
     const { breed } = this.props;
-    if (prevProps.breed !== breed) this.getImage(breed);
+    if (prevProps.breed !== breed) { 
+      this.setState({ isLoaded: false });
+      this.getImage(breed);
+    }
   }
 
   render() {
