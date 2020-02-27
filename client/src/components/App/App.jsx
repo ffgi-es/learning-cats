@@ -16,19 +16,32 @@ export default class App extends Component {
     const config = { headers: { 'x-api-key': process.env.REACT_APP_CAT_AÎ_KEY } };
     axios.get('https://api.thecatapi.com/v1/breeds', config)
       .then((response) => {
-        const shuffled = shuffleArray(response.data);
-
-        const correct = shuffled.pop();
-        const incorrect1 = shuffled.pop();
-        const incorrect2 = shuffled.pop();
-
-        this.setState({
-          isLoaded: true,
-          correct,
-          incorrect1,
-          incorrect2,
-        });
+        this.newCat(response.data);
       });
+  }
+
+  newCat(breeds) {
+    const { current } = this.state;
+    const shuffled = shuffleArray(breeds);
+
+    if (shuffled[shuffled.length - 1] === current) {
+      const temp = shuffled[0];
+      shuffled[0] = shuffled[shuffled.length - 1];
+      shuffled[shuffled.length - 1] = temp;
+    }
+
+    const correct = shuffled.pop();
+    const incorrect1 = shuffled.pop();
+    const incorrect2 = shuffled.pop();
+
+    this.setState({
+      isLoaded: true,
+      correct,
+      incorrect1,
+      incorrect2,
+      answered: undefined,
+      breeds,
+    });
   }
 
   answer(correct) {
@@ -39,6 +52,7 @@ export default class App extends Component {
     const {
       isLoaded, answered,
       correct, incorrect1, incorrect2,
+      breeds,
     } = this.state;
 
     if (isLoaded) {
@@ -62,7 +76,12 @@ export default class App extends Component {
 
       return (
         <div className="App-container">
+          <button className="new-cat" onClick={() => this.newCat(breeds)}>
+            New cat
+          </button>
+
           <Picture breed={correct.id} />
+
           {options}
           {result}
           {info}

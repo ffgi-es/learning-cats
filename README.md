@@ -57,3 +57,8 @@ As a user
 So I can test my knowledge
 I want to try and guess the breed first from some options
 ```
+```
+As a user
+So I can try another cat
+I want a button to load a new cat
+```

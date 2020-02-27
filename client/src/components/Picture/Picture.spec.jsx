@@ -7,6 +7,7 @@ import Picture from './Picture';
 
 const cats = [
   { id: 'test_id', url: 'test_url', breeds: [{ name: 'test breed' }] },
+  { id: 'test_id', url: 'test_url', breeds: [{ name: 'test breed' }] },
 ];
 jest.mock('axios');
 setAxiosMocks(axios, cats);
@@ -15,6 +16,7 @@ describe('<Picture />', () => {
   let wrapper;
 
   beforeEach(() => {
+    jest.clearAllMocks();
     wrapper = shallow(<Picture breed="test_breed_id" />);
   });
 
@@ -45,5 +47,12 @@ describe('<Picture />', () => {
     expect(catImage.length).toBe(1);
     expect(catImage.prop('src')).toEqual('test_url');
     expect(catImage.prop('alt')).toEqual('test_id');
+  });
+
+  it('should get a new image when given a new breed id', async () => {
+    await wrapper.setProps({ breed: 'second' });
+
+    expect(axios.get.mock.calls.length).toBe(2);
+    expect(axios.get.mock.calls[1][1].params.breed_id).toEqual('second');
   });
 });

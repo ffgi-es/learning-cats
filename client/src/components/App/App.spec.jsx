@@ -95,4 +95,30 @@ describe('App', () => {
 
     expect(result.text()).toEqual('Incorrect');
   });
+
+  it('should render a button to load a new cat after guess', () => {
+    wrapper.instance().answer(true);
+    expect(wrapper.find('button.new-cat').text()).toEqual('New cat');
+  });
+
+  it('should load a new cat when button is pressed', () => {
+    wrapper.instance().answer(true);
+    const oldBreed = wrapper.find(Picture).prop('breed');
+
+    wrapper.find('button.new-cat').simulate('click');
+
+    const picture = wrapper.find(Picture);
+
+    expect(picture.prop('breed')).not.toEqual(oldBreed);
+  });
+
+  it('should offer options again for the new cat', () => {
+    wrapper.instance().answer(true);
+    const oldBreed = wrapper.find(Picture).prop('breed');
+
+    wrapper.find('button.new-cat').simulate('click');
+
+    expect(wrapper.find(BreedInfo).length).toBe(0);
+    expect(wrapper.find(BreedOptions).length).toBe(1);
+  });
 });

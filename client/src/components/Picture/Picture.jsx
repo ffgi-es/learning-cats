@@ -13,6 +13,10 @@ export default class Picture extends Component {
     };
 
     const { breed } = props;
+    this.getImage(breed);
+  }
+
+  getImage(breed) {
     const config = {
       params: { breed_id: breed },
       headers: { 'x-api-key': process.env.REACT_APP_CAT_API_KEY },
@@ -24,6 +28,11 @@ export default class Picture extends Component {
           cat: response.data[0],
         });
       });
+  }
+
+  componentDidUpdate(prevProps) {
+    const { breed } = this.props;
+    if (prevProps.breed !== breed) this.getImage(breed);
   }
 
   render() {
