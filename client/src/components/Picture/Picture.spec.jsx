@@ -5,8 +5,11 @@ import setAxiosMocks from '../../helpers/setAxiosMock';
 
 import Picture from './Picture';
 
+const cats = [
+  { id: 'test_id', url: 'test_url', breeds: [{ name: 'test breed' }] },
+];
 jest.mock('axios');
-setAxiosMocks(axios, 'test_id', 'test_url', 'test breed');
+setAxiosMocks(axios, cats);
 
 describe('<Picture />', () => {
   let wrapper;

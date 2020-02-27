@@ -8,13 +8,16 @@ import Picture from '../Picture/Picture';
 import BreedOptions from '../BreedOptions/BreedOptions';
 import BreedInfo from '../BreedInfo/BreedInfo';
 
-jest.mock('axios');
+const cats = [
+  { id: 'test_id', url: 'test_url', breeds: [{ name: 'test breed' }] },
+];
 const breeds = [
   { id: 'one', name: 'Breed One' },
   { id: 'two', name: 'Breed Two' },
   { id: 'three', name: 'Breed Three' },
 ];
-setAxiosMocks(axios, 'test_id', 'test_url', 'test breed', breeds);
+jest.mock('axios');
+setAxiosMocks(axios, cats, breeds);
 
 describe('App', () => {
   let wrapper;

@@ -1,5 +1,6 @@
 export default function setAxiosMocks(
-  axios, id = 'd87', cat_url = 'test_url', breed = 'Shorthair',
+  axios,
+  cats = [{ id: 'd87', url: 'test_url', breeds: [{ name: 'Shorthair' }] }],
   breeds = [
     { name: 'Shorthair', id: 'shor' },
     { name: 'Other', id: 'othe' },
@@ -7,13 +8,7 @@ export default function setAxiosMocks(
   ],
 ) {
   const imagePromise = Promise.resolve({
-    data: [
-      {
-        breeds: [{ name: breed }],
-        id,
-        url: cat_url,
-      },
-    ],
+    data: [cats.pop()],
   });
   const breedsPromise = Promise.resolve({ data: breeds });
 
