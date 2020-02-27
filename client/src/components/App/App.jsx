@@ -11,7 +11,6 @@ export default class App extends Component {
     super(props);
     this.state = {
       isLoaded: false,
-      breeds: [],
     };
   }
 
@@ -19,9 +18,17 @@ export default class App extends Component {
     const config = { headers: { 'x-api-key': process.env.REACT_APP_CAT_AÎ_KEY } };
     axios.get('https://api.thecatapi.com/v1/breeds', config)
       .then((response) => {
+        const shuffled = shuffleArray(response.data);
+
+        const correct = shuffled.pop();
+        const incorrect1 = shuffled.pop();
+        const incorrect2 = shuffled.pop();
+
         this.setState({
           isLoaded: true,
-          breeds: response.data,
+          correct,
+          incorrect1,
+          incorrect2,
         });
       });
   }
@@ -31,26 +38,23 @@ export default class App extends Component {
   }
 
   render() {
-    const { isLoaded, breeds, answered } = this.state;
+    const {
+      isLoaded, answered,
+      correct, incorrect1, incorrect2,
+    } = this.state;
 
     if (isLoaded) {
-      const shuffled = shuffleArray(breeds);
-
-      const randomBreed = shuffled.pop();
-      const incorrect1 = shuffled.pop();
-      const incorrect2 = shuffled.pop();
-
       let options;
       let result;
       let info;
       if (answered !== undefined) {
         const resultText = answered ? 'Correct' : 'Incorrect';
         result = <p className="result">{resultText}</p>;
-        info = <BreedInfo breed={randomBreed} />;
+        info = <BreedInfo breed={correct} />;
       } else {
         options = (
           <BreedOptions
-            correct={randomBreed}
+            correct={correct}
             incorrect1={incorrect1}
             incorrect2={incorrect2}
             answer={(ans) => this.answer(ans)}
@@ -60,7 +64,7 @@ export default class App extends Component {
 
       return (
         <div className="App-container">
-          <Picture breed={randomBreed.id} />
+          <Picture breed={correct.id} />
           {options}
           {result}
           {info}
