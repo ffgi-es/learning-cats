@@ -24,6 +24,8 @@ export default class Picture extends Component {
   }
 
   getImage(breed) {
+    const { isLoaded } = this.state;
+    if (isLoaded) this.setState({ isLoaded: false });
     const config = {
       params: { breed_id: breed },
       headers: { 'x-api-key': process.env.REACT_APP_CAT_API_KEY },
