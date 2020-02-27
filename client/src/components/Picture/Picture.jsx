@@ -16,6 +16,13 @@ export default class Picture extends Component {
     this.getImage(breed);
   }
 
+  componentDidUpdate(prevProps) {
+    const { breed } = this.props;
+    if (prevProps.breed !== breed) {
+      this.getImage(breed);
+    }
+  }
+
   getImage(breed) {
     const config = {
       params: { breed_id: breed },
@@ -28,14 +35,6 @@ export default class Picture extends Component {
           cat: response.data[0],
         });
       });
-  }
-
-  componentDidUpdate(prevProps) {
-    const { breed } = this.props;
-    if (prevProps.breed !== breed) { 
-      this.setState({ isLoaded: false });
-      this.getImage(breed);
-    }
   }
 
   render() {

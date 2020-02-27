@@ -9,7 +9,7 @@ const cats = [
   { id: 'one', url: 'test_url_one', breeds: [{ name: 'Manx' }] },
 ];
 jest.mock('axios');
-const { imagePromise, breedsPromise } = setAxiosMocks(axios, cats);
+const { imagePromise } = setAxiosMocks(axios, cats);
 
 describe('clicking a button for a new cat', () => {
   afterEach(cleanup);

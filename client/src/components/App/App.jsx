@@ -76,7 +76,7 @@ export default class App extends Component {
 
       return (
         <div className="App-container">
-          <button className="new-cat" onClick={() => this.newCat(breeds)}>
+          <button type="button" className="new-cat" onClick={() => this.newCat(breeds)}>
             New cat
           </button>
 

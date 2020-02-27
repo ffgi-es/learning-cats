@@ -114,8 +114,6 @@ describe('App', () => {
 
   it('should offer options again for the new cat', () => {
     wrapper.instance().answer(true);
-    const oldBreed = wrapper.find(Picture).prop('breed');
-
     wrapper.find('button.new-cat').simulate('click');
 
     expect(wrapper.find(BreedInfo).length).toBe(0);
