@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
+import './Picture.css';
+
 export default class Picture extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +34,7 @@ export default class Picture extends Component {
     if (isLoaded) {
       return (
         <div className="picture-container">
-          <img alt={cat.id} src={cat.url} />
+          <img className="cat-image" alt={cat.id} src={cat.url} />
         </div>
       );
     }

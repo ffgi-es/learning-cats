@@ -1,0 +1,9 @@
+img.cat-image {
+    max-width: 600px;
+    max-height: 600px;
+}
+
+.picture-container {
+    width: 600px;
+    height:600px;
+}

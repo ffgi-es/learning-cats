@@ -37,7 +37,7 @@ describe('<Picture />', () => {
   });
 
   it('should render an a cat image', () => {
-    const catImage = wrapper.find('img');
+    const catImage = wrapper.find('img.cat-image');
 
     expect(catImage.length).toBe(1);
     expect(catImage.prop('src')).toEqual('test_url');
