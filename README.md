@@ -28,6 +28,7 @@ REACT_APP_CAT_API_KEY=abc12de-f34g-hi56j-akfhsdf7df73
 
 ## Installation
 
+Install the necessary packages with
 ```
 $ yarn setup
 ```
@@ -45,11 +46,29 @@ Two tests are currently a little flakey...
 
 ## Run server
 
-```
-$ yarn start
-```
+The application can be run in either development
+or production mode.
 
+### Development
+
+This can be run just after installation with
+```
+$ yarn start-client
+```
 Then navigate to `localhost:3000`
+
+### Production
+
+The client must be built first before starting the main
+server. Build it with
+```
+yarn build
+```
+Once this is done the server can be started with
+```
+yarn start
+```
+Then navigate to `localhost:5000`
 
 ## User Stories
 

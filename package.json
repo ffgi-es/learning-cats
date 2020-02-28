@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "setup": "yarn && yarn --cwd client",
+    "build": "yarn --cwd client build",
     "test-client": "yarn --cwd client test",
     "lint-client": "yarn --cwd client lint",
-    "start": "yarn --cwd client start",
+    "start-client": "yarn --cwd client start",
+    "start": "node index.js",
     "heroku-postbuild": "yarn --cwd client && yarn --cwd client build"
   },
   "repository": {
@@ -22,6 +24,7 @@
   },
   "homepage": "https://github.com/ffgi-es/learning-cats#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "yarn": "^1.22.0"
   }
 }
