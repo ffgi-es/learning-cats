@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/ffgi-es/learning-cats#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "yarn": "^1.22.0"
   }
 }
